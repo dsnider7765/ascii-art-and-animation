@@ -58,19 +58,21 @@ class Animation(App):
         super(Animation,self).__init__()
 
     def create(self):
-        #tkinter.Label(
+        tkinter.Label(self.root,text="This is Mr. Fredricksen",
+                      font='-size 20').grid()
         #smallFont = tkinter.font(family="Consolas",size='7')
-        asciiArt = asciinator('89294.jpg',.1,1)
+        asciiArt = asciinator('89294.jpg',.1,1,WCF=8/4)
         self.text = tkinter.Text(self.root,width=len(asciiArt.split('\n')[0]),
                                  height=len(asciiArt.split('\n')),
                                  wrap=tkinter.W,font='-family Consolas -size 4')
         self.text.grid()
         self.text.insert(tkinter.END,asciiArt)
+        self.text.config(state=tkinter.DISABLED)
         
         
 if __name__ == '__main__':
     '''scrolling_line_print(asciinator('89294.jpg',.135,1))
     open('ascii_out.txt','w').write(asciinator('89294.jpg',.135,1))'''
-    #print(len(asciinator('89294.jpg',.135,1).split('\n')))
+    print(len(asciinator('89294.jpg',.1,1,WCF=2).split('\n')[0]),len(asciinator('89294.jpg',.1,1,WCF=2).split('\n')))
     ####length of ella-gun-hand is 255 and height is 146
     Animation()
