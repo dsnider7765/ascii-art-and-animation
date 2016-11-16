@@ -3,6 +3,7 @@
 # November 14, 2016
 
 import sys; from PIL import Image; import numpy as np; from time import sleep
+import tkinter
 
 def make_grayscale(imgPath):
     img = Image.open(imgPath).convert('RGB')
@@ -39,7 +40,37 @@ def scrolling_line_print(txt):
     for i in txt.split('\n'):
         print(i)
         sleep(0.00005)
+
+class App(object):
+    '''making the application'''
+    def __init__(self):
+        self.root = tkinter.Tk()
+        self.root.grid()
+        self.create()
+        self.root.mainloop()
+
+    def create(self):
+        pass #this is to be made by children of this class
+
+class Animation(App):
+    '''for the actual animation'''
+    def __init__(self):
+        super(Animation,self).__init__()
+
+    def create(self):
+        #tkinter.Label(
+        #smallFont = tkinter.font(family="Consolas",size='7')
+        asciiArt = asciinator('89294.jpg',.1,1)
+        self.text = tkinter.Text(self.root,width=len(asciiArt.split('\n')[0]),
+                                 height=len(asciiArt.split('\n')),
+                                 wrap=tkinter.W,font='-family Consolas -size 4')
+        self.text.grid()
+        self.text.insert(tkinter.END,asciiArt)
+        
         
 if __name__ == '__main__':
-    scrolling_line_print(asciinator('89294.jpg',.135,1))
-    open('ascii_out.txt','w').write(asciinator('89294.jpg',.135,1))
+    '''scrolling_line_print(asciinator('89294.jpg',.135,1))
+    open('ascii_out.txt','w').write(asciinator('89294.jpg',.135,1))'''
+    #print(len(asciinator('89294.jpg',.135,1).split('\n')))
+    ####length of ella-gun-hand is 255 and height is 146
+    Animation()
