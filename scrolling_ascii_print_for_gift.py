@@ -96,7 +96,13 @@ this on a different day).
         self.messageWidget.config(state=tkinter.DISABLED)
 
     def continue_button(self):
-        self.messageCounter += 1
+        self.messageCount += 1
+        txt = self.messages[self.messageCount]
+        self.messageWidget.config(state=tkinter.NORMAL)
+        self.messageWidget.delete(0.0,tkinter.END)
+        self.messageWidget.insert(0.0,txt)
+        self.messageWidget.config(state=tkinter.DISABLED)
+        
         
         
         
