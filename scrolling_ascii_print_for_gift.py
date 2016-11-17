@@ -54,10 +54,26 @@ class App(object):
 
 class Animation(App):
     '''for the actual animation'''
-    def __init__(self):
-        super(Animation,self).__init__()
-
+            
     def create(self):
+        self.messageCount = 0
+        self.messages = ['''
+This is you, Ella. You don't get to argue that.
+The reasoning is fair and you know it.
+''','''
+Look, I know you said I couldn't get you anything
+for your birthday, so I made you this.
+''','''
+I just want you to know that you're not
+unimportant.
+''','''
+You're important to me, you're important to Ethan,
+and you're definitely important to your mother.
+''','''
+So, happy birthday(belated or early if you opened
+this on a different day).
+'''
+                         ]
         self.topLabel=tkinter.Label(self.root,text="This is Mr. Fredricksen",
                                     font='-size 20').grid()
         #smallFont = tkinter.font(family="Consolas",size='7')
@@ -65,18 +81,23 @@ class Animation(App):
         self.text = tkinter.Text(self.root,width=len(asciiArt.split('\n')[0]),
                                  height=len(asciiArt.split('\n')),
                                  wrap=tkinter.W,font='-family Consolas -size 3')
-        self.text.grid()
+        self.text.grid(rowspan=3)
         self.text.insert(tkinter.END,asciiArt)
         self.text.config(state=tkinter.DISABLED)
 
         tkinter.Button(self.root,text="Continue",font='-size 15',
-                       command=self.continue_button).grid(column=1,row=1,
-                                                          sticky=tkinter.SE)
-        self.message = tkinter.Text(self.root,font='-size 10')
-        self.message.grid(row=1,column=1)
+                       command=self.continue_button).grid(column=1,row=2,
+                                                          sticky=tkinter.NE)
+        messageText = self.messages[self.messageCount]
+        self.messageWidget = tkinter.Text(self.root,font='-size 10',
+                                          wrap=tkinter.W)
+        self.messageWidget.grid(row=1,column=1)
+        self.messageWidget.insert(0.0,messageText)
+        self.messageWidget.config(state=tkinter.DISABLED)
 
     def continue_button(self):
-        pass
+        self.messageCounter += 1
+        
         
         
 if __name__ == '__main__':
