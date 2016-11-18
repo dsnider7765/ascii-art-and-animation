@@ -59,29 +59,11 @@ class Animation(App):
         self.messageCount = 0
         self.messages = ['''This is you, Ella. You don't get to argue that.
 The reasoning is fair and you know it.
-''','''Look, I know you said I couldn't get you anything
-for your birthday, so I made you this. Please at
-least go through this before you get mad at me.
-''','''I just want you to know that you're not
-unimportant.
-''','''You're important to me, you're important to Ethan,
-and you're definitely important to your mother,
-just to state a few.
-''','''So, happy birthday(belated or early if you opened
-this on a different day).
-''','''I care about you, so I need you to know this:
-No matter what it is you need, I'll be there to
-help out.
-''','''I know I'm not your closest friend by any means,
-but you are my best friend and I will
-continue to treat you as such.
-''','''You said you trust me, so trust me on this.
-You deserve so much more than you think you do.
-''','''So, once again, happy birthday. You deserve a good one.
 '''
                          ]
         self.asciiImages = [asciinator('89294.jpg',.12,1,10/4),
-                            asciinator('IMG_8770.JPG',.12,1,10/4)]
+                            asciinator('IMG_8770.JPG',.12,1,10/4),
+                            asciinator('IMG_8774.JPG',.12,1,10/4)]
         self.imageCount = 0
         self.topLabel=tkinter.Label(self.root,text="This is Mr. Fredricksen",
                                     font='-size 20').grid()
@@ -107,12 +89,12 @@ You deserve so much more than you think you do.
 
     def continue_button(self):
         try:
-            self.messageCount += 1
-            txt = self.messages[self.messageCount]
-            self.messageWidget.config(state=tkinter.NORMAL)
-            self.messageWidget.delete(0.0,tkinter.END)
-            self.messageWidget.insert(0.0,txt)
-            self.messageWidget.config(state=tkinter.DISABLED)
+##            self.messageCount += 1
+##            txt = self.messages[self.messageCount]
+##            self.messageWidget.config(state=tkinter.NORMAL)
+##            self.messageWidget.delete(0.0,tkinter.END)
+##            self.messageWidget.insert(0.0,txt)
+##            self.messageWidget.config(state=tkinter.DISABLED)
 
             try:
                 self.imageCount += 1
