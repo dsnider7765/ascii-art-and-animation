@@ -57,43 +57,36 @@ class Animation(App):
             
     def create(self):
         self.messageCount = 0
-        self.messages = ['''
-This is you, Ella. You don't get to argue that.
+        self.messages = ['''This is you, Ella. You don't get to argue that.
 The reasoning is fair and you know it.
-''','''
-Look, I know you said I couldn't get you anything
+''','''Look, I know you said I couldn't get you anything
 for your birthday, so I made you this. Please at
 least go through this before you get mad at me.
-''','''
-I just want you to know that you're not
+''','''I just want you to know that you're not
 unimportant.
-''','''
-You're important to me, you're important to Ethan,
+''','''You're important to me, you're important to Ethan,
 and you're definitely important to your mother,
 just to state a few.
-''','''
-So, happy birthday(belated or early if you opened
+''','''So, happy birthday(belated or early if you opened
 this on a different day).
-''','''
-I care about you, so I need you to know this:
+''','''I care about you, so I need you to know this:
 No matter what it is you need, I'll be there to
 help out.
-''','''
-I know I'm not your closest friend by any means,
-but you are the best friend I have and I will
+''','''I know I'm not your closest friend by any means,
+but you are my best friend and I will
 continue to treat you as such.
-''','''
-You said you trust me, so trust me on this.
+''','''You said you trust me, so trust me on this.
 You deserve so much more than you think you do.
-''','''
-So, once again, happy birthday. You deserve a good one.
+''','''So, once again, happy birthday. You deserve a good one.
 '''
                          ]
-        self.asciiImages = [asciinator('89294.jpg',.12,1,WCF=10/4)]
+        self.asciiImages = [asciinator('89294.jpg',.12,1,10/4),
+                            asciinator('IMG_8770.JPG',.12,1,10/4)]
+        self.imageCount = 0
         self.topLabel=tkinter.Label(self.root,text="This is Mr. Fredricksen",
                                     font='-size 20').grid()
         #smallFont = tkinter.font(family="Consolas",size='7')
-        asciiArt = self.asciiImages[0]
+        asciiArt = self.asciiImages[self.imageCount]
         self.text = tkinter.Text(self.root,width=len(asciiArt.split('\n')[0]),
                                  height=len(asciiArt.split('\n')),
                                  wrap=tkinter.W,font='-family Consolas -size 3')
@@ -104,11 +97,12 @@ So, once again, happy birthday. You deserve a good one.
         tkinter.Button(self.root,text="Continue",font='-size 15',
                        command=self.continue_button).grid(column=1,row=2,
                                                           sticky=tkinter.NE)
-        messageText = self.messages[self.messageCount]
-        self.messageWidget = tkinter.Text(self.root,font='-size 12',
-                                          wrap=tkinter.W)
+        txt = self.messages[self.messageCount]
+        self.messageWidget = tkinter.Text(self.root,font='-size 18',
+                                          wrap=tkinter.W,width=51,
+                                          height=3)
         self.messageWidget.grid(row=1,column=1)
-        self.messageWidget.insert(0.0,messageText)
+        self.messageWidget.insert(0.0,txt)
         self.messageWidget.config(state=tkinter.DISABLED)
 
     def continue_button(self):
@@ -119,6 +113,19 @@ So, once again, happy birthday. You deserve a good one.
             self.messageWidget.delete(0.0,tkinter.END)
             self.messageWidget.insert(0.0,txt)
             self.messageWidget.config(state=tkinter.DISABLED)
+
+            try:
+                self.imageCount += 1
+                asciiArt = self.asciiImages[self.imageCount]
+            except:
+                self.imageCount = 0
+                asciiArt = self.asciiImages[self.imageCount]
+            self.text.config(state=tkinter.NORMAL,
+                             width=len(asciiArt.split('\n')[0]),
+                             height=len(asciiArt.split('\n')))
+            self.text.delete(0.0,tkinter.END)
+            self.text.insert(0.0,asciiArt)
+            self.text.config(state=tkinter.DISABLED)
         except:
             self.the_end()
     def the_end(self):
@@ -132,4 +139,5 @@ if __name__ == '__main__':
     #print(len(asciinator('89294.jpg',.1,1,WCF=10/4).split('\n')[0]),
     #      len(asciinator('89294.jpg',.1,1,WCF=10/4).split('\n')))
     ####length of ella-gun-hand is 255 and height is 146
+    print('please wait while the images process.')
     Animation()
