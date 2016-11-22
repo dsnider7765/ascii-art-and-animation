@@ -1,5 +1,5 @@
 # scrolling_ascii_converter.py
-# David Snider
+# David Snider(DAS)
 # November 14, 2016
 
 import sys; from PIL import Image; import numpy as np; from time import sleep
@@ -21,6 +21,7 @@ def make_grayscale(imgPath):
 
 def asciinator(imgPath,SC,GCF,WCF=7/4):
 # code from https://gist.github.com/cdiener/10491632 ------------------------
+#edited for use as function(DAS)
     chars = np.asarray(list(' .,:;irsXA253hMHGS#9B&@'))
 
     #if len(sys.argv) != 4: 
@@ -35,7 +36,7 @@ def asciinator(imgPath,SC,GCF,WCF=7/4):
     img = (1.0 - img/img.max())**GCF*(chars.size-1)
 
     return "\n".join( ("".join(r) for r in chars[img.astype(int)]) )
-
+#----------------------------------------------------------------------------
 def scrolling_line_print(txt):
     for i in txt.split('\n'):
         print(i)
@@ -59,6 +60,15 @@ class Animation(App):
         self.messageCount = 0
         self.messages = ['''This is you, Ella. You don't get to argue that.
 The reasoning is fair and you know it.
+''','''You will always be Mr. Fredricksen to me :P
+''','''So, that being said, HAPPY BIRTHDAY MR. FREDRICKSEN!
+''''''You said I wasn't allowed to buy you anything.
+So, I didn't. I've worked on this daily since I started.
+''','''There's no way I could avoid giving you something.
+You deserve so much more than you think you do.
+''','''First of all, anyone that can stand me for this long
+deserves a medal. I'm one of the most annoying little
+shits ever. XD
 '''
                          ]
         self.asciiImages = [asciinator('89294.jpg',.12,1,10/4),
@@ -89,12 +99,12 @@ The reasoning is fair and you know it.
 
     def continue_button(self):
         try:
-##            self.messageCount += 1
-##            txt = self.messages[self.messageCount]
-##            self.messageWidget.config(state=tkinter.NORMAL)
-##            self.messageWidget.delete(0.0,tkinter.END)
-##            self.messageWidget.insert(0.0,txt)
-##            self.messageWidget.config(state=tkinter.DISABLED)
+            self.messageCount += 1
+            txt = self.messages[self.messageCount]
+            self.messageWidget.config(state=tkinter.NORMAL)
+            self.messageWidget.delete(0.0,tkinter.END)
+            self.messageWidget.insert(0.0,txt)
+            self.messageWidget.config(state=tkinter.DISABLED)
 
             try:
                 self.imageCount += 1
