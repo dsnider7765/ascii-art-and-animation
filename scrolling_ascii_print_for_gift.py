@@ -3,7 +3,7 @@
 # November 14, 2016
 
 import sys; from PIL import Image; import numpy as np; from time import sleep
-import tkinter
+import tkinter; import os
 
 def make_grayscale(imgPath):
     img = Image.open(imgPath).convert('RGB')
@@ -71,9 +71,22 @@ deserves a medal. I'm one of the most annoying little
 shits ever. XD
 '''
                          ]
-        self.asciiImages = [asciinator('89294.jpg',.12,1,10/4),
-                            asciinator('IMG_8770.JPG',.12,1,10/4),
-                            asciinator('IMG_8774.JPG',.12,1,10/4)]
+##        self.asciiImages = [asciinator('IMG_8897.JPG',.12,1,10/4),
+##                            asciinator('IMG_8898.JPG',.12,1,10/4)]
+        txtFiles = self.get_txt_files()
+        asciiImages = []
+        for file in txtFiles:
+            f = open(file,'r')
+            asciiImages.append(f)
+        self.asciiImages = []
+        for txt in asciiImages:
+            outTxt = ''
+            for line in txt:
+                outTxt += line
+            
+            self.asciiImages.append(outTxt)
+            #print(outTxt)
+        
         self.imageCount = 0
         self.topLabel=tkinter.Label(self.root,text="This is Mr. Fredricksen",
                                     font='-size 20').grid()
@@ -122,6 +135,17 @@ shits ever. XD
             self.the_end()
     def the_end(self):
         self.root.destroy()
+
+    def get_txt_files(self):
+            
+        txt_list = []
+        
+        directory_list = os.listdir(os.getcwd()) # Get list of files
+        for entry in directory_list:
+            if '.txt' in entry:
+                #absolute_filename = os.path.join(directory, entry)
+                txt_list += [entry]
+        return txt_list
         
         
         
@@ -133,3 +157,12 @@ if __name__ == '__main__':
     ####length of ella-gun-hand is 255 and height is 146
     print('please wait while the images process.')
     Animation()
+##    asciiImages = [asciinator('89294.jpg',.12,1,10/4),
+##                   asciinator('IMG_8770.JPG',.12,1,10/4),
+##                   asciinator('IMG_8774.JPG',.12,1,10/4)]
+##    for i in range(len(asciiImages)):
+##        open('image{}.txt'.format(i),'w').write(asciiImages[i])
+##    txt = asciinator('IMG_8897.JPG',.12,1,10/4)
+##    open('image3.txt','w').write(txt)
+
+    
