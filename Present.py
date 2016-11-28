@@ -46,6 +46,8 @@ class App(object):
     '''making the application'''
     def __init__(self):
         self.root = tkinter.Tk()
+        self.root.geometry('{}x{}+0+0'.format(self.root.winfo_screenwidth(),
+                                              self.root.winfo_screenheight()))
         self.root.grid()
         self.create()
         self.root.mainloop()
