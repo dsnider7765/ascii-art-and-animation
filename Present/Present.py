@@ -1,4 +1,4 @@
-# scrolling_ascii_converter.py
+# Present.py
 # David Snider(DAS)
 # November 14, 2016
 
@@ -60,7 +60,8 @@ class Animation(App):
 
     def create(self):
         self.messageCount = 0
-        self.messages = ['''This is you, Ella. You don't get to argue that.
+        self.messages = ['''The name is staying, Ella.
+You don't get to argue that.
 The reasoning is fair and you know it.
 ''','''You will always be Mr. Fredricksen to me :P
 ''','''So, that being said,
