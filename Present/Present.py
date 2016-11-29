@@ -120,7 +120,6 @@ You deserve the best!
         self.messageWidget.insert(0.0,txt)
         self.messageWidget.config(state=tkinter.DISABLED)
 
-        Background()
         
 
     def continue_button(self):
@@ -162,12 +161,6 @@ You deserve the best!
                 txt_list += [entry]
         return txt_list
 
-class Background(App):
-    def __init__(self):
-        super(Background,self).__init__()
-        winsound.PlaySound('polarize.wav', winsound.SND_FILENAME)
-        
-        
 if __name__ == '__main__':
     '''scrolling_line_print(asciinator('89294.jpg',.135,1))
     open('ascii_out.txt','w').write(asciinator('89294.jpg',.135,1))'''
