@@ -3,7 +3,7 @@
 # November 14, 2016
 
 import sys; from PIL import Image; import numpy as np; from time import sleep
-import tkinter; import os
+import tkinter; import os; import winsound
 
 def make_grayscale(imgPath):
     img = Image.open(imgPath).convert('RGB')
@@ -57,20 +57,28 @@ class App(object):
 
 class Animation(App):
     '''for the actual animation'''
-            
+
     def create(self):
         self.messageCount = 0
         self.messages = ['''This is you, Ella. You don't get to argue that.
 The reasoning is fair and you know it.
 ''','''You will always be Mr. Fredricksen to me :P
-''','''So, that being said, HAPPY BIRTHDAY MR. FREDRICKSEN!
-''''''You said I wasn't allowed to buy you anything.
-So, I didn't. I've worked on this daily since I started.
+''','''So, that being said,
+HAPPY BIRTHDAY MR. FREDRICKSEN!
+''','''You said I wasn't allowed to buy you anything.
+So, I didn't. I've worked on this daily since early November.
 ''','''There's no way I could avoid giving you something.
 You deserve so much more than you think you do.
 ''','''First of all, anyone that can stand me for this long
 deserves a medal. I'm one of the most annoying little
 shits ever. XD
+''','''I'm not always great with words so I figured I'd
+make you a little code instead of a card.
+''','''The few words you need to know are these:
+you're one of my best friends and I will continue
+to treat you as such for as long as I'm around.
+''','''Hope your birthday went how you wanted!
+You deserve the best!
 '''
                          ]
 ##        self.asciiImages = [asciinator('IMG_8897.JPG',.12,1,10/4),
@@ -112,7 +120,12 @@ shits ever. XD
         self.messageWidget.insert(0.0,txt)
         self.messageWidget.config(state=tkinter.DISABLED)
 
+        Background()
+        
+
     def continue_button(self):
+##        if self.messageCount == 0:
+##            winsound.PlaySound('polarize.wav', winsound.SND_FILENAME)
         try:
             self.messageCount += 1
             txt = self.messages[self.messageCount]
@@ -148,7 +161,11 @@ shits ever. XD
                 #absolute_filename = os.path.join(directory, entry)
                 txt_list += [entry]
         return txt_list
-        
+
+class Background(App):
+    def __init__(self):
+        super(Background,self).__init__()
+        winsound.PlaySound('polarize.wav', winsound.SND_FILENAME)
         
         
 if __name__ == '__main__':
@@ -157,8 +174,9 @@ if __name__ == '__main__':
     #print(len(asciinator('89294.jpg',.1,1,WCF=10/4).split('\n')[0]),
     #      len(asciinator('89294.jpg',.1,1,WCF=10/4).split('\n')))
     ####length of ella-gun-hand is 255 and height is 146
-    print('please wait while the images process.')
+##    print('please wait while the images process.')
     Animation()
+
 ##    asciiImages = [asciinator('89294.jpg',.12,1,10/4),
 ##                   asciinator('IMG_8770.JPG',.12,1,10/4),
 ##                   asciinator('IMG_8774.JPG',.12,1,10/4)]
