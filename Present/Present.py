@@ -3,7 +3,7 @@
 # November 14, 2016
 
 import sys; from PIL import Image; import numpy as np; from time import sleep
-import tkinter; import os; import winsound
+import tkinter; import os; import winsound; import threading
 
 def make_grayscale(imgPath):
     img = Image.open(imgPath).convert('RGB')
@@ -57,7 +57,10 @@ class App(object):
 
 class Animation(App):
     '''for the actual animation'''
-
+##    def __init__(self):
+##        super(Animation,self).__init__()
+##        musicThread = threading.Thread(target=self.play_music)
+##        musicThread.start()
     def create(self):
         self.messageCount = 0
         self.messages = ['''The name is staying, Ella.
@@ -162,6 +165,10 @@ You deserve the best!
                 txt_list += [entry]
         return txt_list
 
+##    def play_music(self):
+##        while self.root.state()== 'normal':
+##            winsound.PlaySound('polarize.wav', winsound.SND_FILENAME)
+
 if __name__ == '__main__':
     '''scrolling_line_print(asciinator('89294.jpg',.135,1))
     open('ascii_out.txt','w').write(asciinator('89294.jpg',.135,1))'''
@@ -169,8 +176,11 @@ if __name__ == '__main__':
     #      len(asciinator('89294.jpg',.1,1,WCF=10/4).split('\n')))
     ####length of ella-gun-hand is 255 and height is 146
 ##    print('please wait while the images process.')
+    def play_music():
+        winsound.PlaySound('polarize.wav',winsound.SND_FILENAME)
+    thread = threading.Thread(target=play_music)
+    thread.start()
     Animation()
-
 ##    asciiImages = [asciinator('89294.jpg',.12,1,10/4),
 ##                   asciinator('IMG_8770.JPG',.12,1,10/4),
 ##                   asciinator('IMG_8774.JPG',.12,1,10/4)]
